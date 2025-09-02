@@ -30,10 +30,10 @@ namespace Moble_Yacht_Game.Database.Core.Crud
                 }
                 return cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"데이터 수정 중 오류 발생: {ex.Message}");
-                return 0;
+                // UI 요소를 제거하고, 오류 발생 시 -1을 반환합니다.
+                return -1;
             }
         }
     }

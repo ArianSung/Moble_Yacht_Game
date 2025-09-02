@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
 
@@ -30,40 +31,42 @@ namespace Moble_Yacht_Game.Database.Core
         // connectionString: 데이터베이스에 연결하기 위한 정보(주소, 아이디, 비밀번호, DB이름 등)를 담는 문자열입니다.
         // 보안을 위해 실제 코드에서는 별도의 설정 파일에 저장하는 것이 좋습니다.
         // TODO: 아래 Server, Uid, Pwd, Database 값을 본인의 Azure MySQL 정보로 반드시 수정해야 합니다.
-        private readonly string connectionString = "Server=moble-yacht-game-db-server.mysql.database.azure.com;Port=3306;Database=yacht_db;Uid=yacht_admin;Pwd=moble1234!;SslMode=Required;";
+        private readonly string connectionString;
 
         // 생성자(Constructor): DatabaseManager 객체가 처음 생성될 때 호출되는 부분입니다.
         // private으로 선언하여 외부에서 new DatabaseManager()로 새 객체를 만드는 것을 원천적으로 차단합니다. (싱글톤 유지)
-        private DatabaseManager() { }
+        private DatabaseManager()
+        {
+            // appsettings.json 파일에서 연결 문자열을 읽어옵니다.
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+            connectionString = configuration.GetConnectionString("DefaultConnection");
+        }
 
         /// <summary>
         /// 데이터베이스와의 연결을 시작합니다.
         /// 프로그램 시작 시 단 한 번만 호출하는 것을 권장합니다.
         /// </summary>
         /// <returns>연결 성공 시 true, 실패 시 false를 반환합니다.</returns>
-        public bool Connect()
+        public void Connect()
         {
-            // try-catch: 예외(오류)가 발생할 가능성이 있는 코드를 안전하게 실행하기 위한 구문입니다.
             try
             {
-                // 이미 연결이 되어있는 상태에서 또 연결을 시도하는 것을 방지합니다.
                 if (conn != null && conn.State == System.Data.ConnectionState.Open)
                 {
-                    return true;
+                    return;
                 }
-
-                // 연결 문자열 정보를 바탕으로 MySqlConnection 객체를 생성합니다.
                 conn = new MySqlConnection(connectionString);
-                // 실제 데이터베이스 서버에 연결을 시도합니다.
                 conn.Open();
-                return true;
             }
-            // catch: try 블록 안에서 오류가 발생했을 때 실행되는 부분입니다.
             catch (Exception ex)
             {
-                // 어떤 오류가 발생했는지 메시지 박스로 사용자에게 알려줍니다.
-                MessageBox.Show($"데이터베이스 연결 실패: {ex.Message}");
-                return false;
+                // UI에 직접적인 오류 메시지를 표시하는 대신,
+                // 예외를 호출자(MainForm)에게 다시 던져서 처리하도록 합니다.
+                throw new Exception($"데이터베이스 연결에 실패했습니다. (원본 오류: {ex.Message})");
             }
         }
 
@@ -88,6 +91,11 @@ namespace Moble_Yacht_Game.Database.Core
         /// <returns>MySqlConnection 객체를 반환합니다.</returns>
         public MySqlConnection GetConnection()
         {
+            // 연결이 끊어졌을 경우를 대비한 안전장치
+            if (conn == null || conn.State != System.Data.ConnectionState.Open)
+            {
+                throw new Exception("데이터베이스가 연결되어 있지 않습니다.");
+            }
             return conn;
         }
     }
