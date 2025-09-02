@@ -53,9 +53,12 @@ namespace Moble_Yacht_Game
             InitializeControls();
             ShowControl(loginControl);
         }
-
+        
         /// <summary>
         /// 사용자가 창의 닫기(X) 버튼을 누르는 등 폼이 닫히기 직전에 실행되는 이벤트 핸들러입니다.
+        /// </summary>
+        /// <summary>
+        /// 프로그램이 종료되기 직전에 데이터베이스 연결을 안전하게 해제합니다.
         /// </summary>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -70,7 +73,17 @@ namespace Moble_Yacht_Game
         {
             loginControl = new LoginControl();
             loginControl.LoginSuccess += OnLoginSuccess;
-            // RegisterControl은 별도의 Form으로 분리했으므로, MainForm이 더 이상 알 필요가 없습니다.
+            loginControl.RegisterRequested += LoginControl_RegisterRequested;
+        }
+
+        private void LoginControl_RegisterRequested()
+        {
+            // RegisterForm을 생성하고 모달(Modal) 형태로 띄웁니다.
+            // .ShowDialog()는 해당 폼이 닫히기 전까지 다른 창을 조작할 수 없게 만듭니다.
+            using (RegisterForm registerForm = new RegisterForm())
+            {
+                registerForm.ShowDialog();
+            }
         }
 
         /// <summary>

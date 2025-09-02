@@ -53,23 +53,23 @@
             lblUsername = new Label();
             lblStep1Title = new Label();
             pnlStep2 = new Panel();
+            btnUploadImage = new Button();
+            btnCheckNickname = new Button();
+            textBox1 = new TextBox();
+            pictureBox1 = new PictureBox();
+            lblImageStatus = new Label();
+            lblProfileImage = new Label();
+            lblNicknameStatus = new Label();
+            lblNickname = new Label();
+            lblStep2Title = new Label();
             panel1 = new Panel();
             btnNextOrRegister = new Button();
             btnBack = new Button();
             btnCancel = new Button();
-            lblStep2Title = new Label();
-            lblNickname = new Label();
-            lblNicknameStatus = new Label();
-            lblProfileImage = new Label();
-            lblImageStatus = new Label();
-            pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
-            btnCheckNickname = new Button();
-            btnUploadImage = new Button();
             pnlStep1.SuspendLayout();
             pnlStep2.SuspendLayout();
-            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlStep1
@@ -326,6 +326,85 @@
             pnlStep2.Size = new Size(434, 530);
             pnlStep2.TabIndex = 1;
             // 
+            // btnUploadImage
+            // 
+            btnUploadImage.Location = new Point(276, 173);
+            btnUploadImage.Name = "btnUploadImage";
+            btnUploadImage.Size = new Size(90, 29);
+            btnUploadImage.TabIndex = 3;
+            btnUploadImage.Text = "이미지 찾기...";
+            btnUploadImage.UseVisualStyleBackColor = true;
+            // 
+            // btnCheckNickname
+            // 
+            btnCheckNickname.Location = new Point(277, 79);
+            btnCheckNickname.Name = "btnCheckNickname";
+            btnCheckNickname.Size = new Size(90, 29);
+            btnCheckNickname.TabIndex = 3;
+            btnCheckNickname.Text = "중복확인";
+            btnCheckNickname.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(56, 79);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(203, 29);
+            textBox1.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(56, 173);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(203, 203);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // lblImageStatus
+            // 
+            lblImageStatus.AutoSize = true;
+            lblImageStatus.Location = new Point(60, 385);
+            lblImageStatus.Name = "lblImageStatus";
+            lblImageStatus.Size = new Size(71, 15);
+            lblImageStatus.TabIndex = 0;
+            lblImageStatus.Text = "상태 메시지";
+            // 
+            // lblProfileImage
+            // 
+            lblProfileImage.AutoSize = true;
+            lblProfileImage.Location = new Point(56, 155);
+            lblProfileImage.Name = "lblProfileImage";
+            lblProfileImage.Size = new Size(83, 15);
+            lblProfileImage.TabIndex = 0;
+            lblProfileImage.Text = "프로필 이미지";
+            // 
+            // lblNicknameStatus
+            // 
+            lblNicknameStatus.AutoSize = true;
+            lblNicknameStatus.Location = new Point(56, 111);
+            lblNicknameStatus.Name = "lblNicknameStatus";
+            lblNicknameStatus.Size = new Size(71, 15);
+            lblNicknameStatus.TabIndex = 0;
+            lblNicknameStatus.Text = "상태 메시지";
+            // 
+            // lblNickname
+            // 
+            lblNickname.AutoSize = true;
+            lblNickname.Location = new Point(56, 61);
+            lblNickname.Name = "lblNickname";
+            lblNickname.Size = new Size(43, 15);
+            lblNickname.TabIndex = 0;
+            lblNickname.Text = "닉네임";
+            // 
+            // lblStep2Title
+            // 
+            lblStep2Title.AutoSize = true;
+            lblStep2Title.Location = new Point(186, 9);
+            lblStep2Title.Name = "lblStep2Title";
+            lblStep2Title.Size = new Size(102, 30);
+            lblStep2Title.TabIndex = 0;
+            lblStep2Title.Text = "프로필 설정 (2/2)\n\n";
+            // 
             // panel1
             // 
             panel1.Controls.Add(btnNextOrRegister);
@@ -363,85 +442,6 @@
             btnCancel.Text = "취소";
             btnCancel.UseVisualStyleBackColor = true;
             // 
-            // lblStep2Title
-            // 
-            lblStep2Title.AutoSize = true;
-            lblStep2Title.Location = new Point(186, 9);
-            lblStep2Title.Name = "lblStep2Title";
-            lblStep2Title.Size = new Size(102, 30);
-            lblStep2Title.TabIndex = 0;
-            lblStep2Title.Text = "프로필 설정 (2/2)\n\n";
-            // 
-            // lblNickname
-            // 
-            lblNickname.AutoSize = true;
-            lblNickname.Location = new Point(56, 61);
-            lblNickname.Name = "lblNickname";
-            lblNickname.Size = new Size(43, 15);
-            lblNickname.TabIndex = 0;
-            lblNickname.Text = "닉네임";
-            // 
-            // lblNicknameStatus
-            // 
-            lblNicknameStatus.AutoSize = true;
-            lblNicknameStatus.Location = new Point(56, 111);
-            lblNicknameStatus.Name = "lblNicknameStatus";
-            lblNicknameStatus.Size = new Size(71, 15);
-            lblNicknameStatus.TabIndex = 0;
-            lblNicknameStatus.Text = "상태 메시지";
-            // 
-            // lblProfileImage
-            // 
-            lblProfileImage.AutoSize = true;
-            lblProfileImage.Location = new Point(56, 155);
-            lblProfileImage.Name = "lblProfileImage";
-            lblProfileImage.Size = new Size(83, 15);
-            lblProfileImage.TabIndex = 0;
-            lblProfileImage.Text = "프로필 이미지";
-            // 
-            // lblImageStatus
-            // 
-            lblImageStatus.AutoSize = true;
-            lblImageStatus.Location = new Point(60, 385);
-            lblImageStatus.Name = "lblImageStatus";
-            lblImageStatus.Size = new Size(71, 15);
-            lblImageStatus.TabIndex = 0;
-            lblImageStatus.Text = "상태 메시지";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(56, 173);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(203, 203);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(56, 79);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(203, 29);
-            textBox1.TabIndex = 2;
-            // 
-            // btnCheckNickname
-            // 
-            btnCheckNickname.Location = new Point(277, 79);
-            btnCheckNickname.Name = "btnCheckNickname";
-            btnCheckNickname.Size = new Size(90, 29);
-            btnCheckNickname.TabIndex = 3;
-            btnCheckNickname.Text = "중복확인";
-            btnCheckNickname.UseVisualStyleBackColor = true;
-            // 
-            // btnUploadImage
-            // 
-            btnUploadImage.Location = new Point(276, 173);
-            btnUploadImage.Name = "btnUploadImage";
-            btnUploadImage.Size = new Size(90, 29);
-            btnUploadImage.TabIndex = 3;
-            btnUploadImage.Text = "이미지 찾기...";
-            btnUploadImage.UseVisualStyleBackColor = true;
-            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -453,13 +453,14 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "RegisterForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "RegisterForm";
             pnlStep1.ResumeLayout(false);
             pnlStep1.PerformLayout();
             pnlStep2.ResumeLayout(false);
             pnlStep2.PerformLayout();
-            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
