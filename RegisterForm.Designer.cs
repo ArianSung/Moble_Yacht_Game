@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             pnlStep1 = new Panel();
-            linkLabel1 = new LinkLabel();
-            checkBox2 = new CheckBox();
-            label5 = new Label();
+            lnkViewTerms = new LinkLabel();
+            chkAgreeToTerms = new CheckBox();
+            lblPasswordConfirm = new Label();
             lblPasswordPolicy = new Label();
-            label10 = new Label();
-            label9 = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
+            lblResendTimer = new Label();
+            lblVerificationStatus = new Label();
+            lblVerificationCode = new Label();
+            lblEmail = new Label();
+            lblPasswordStatus = new Label();
             lblPasswordStrength = new Label();
             chkShowPassword = new CheckBox();
-            button3 = new Button();
-            button2 = new Button();
+            btnConfirmVerification = new Button();
+            btnSendVerification = new Button();
             btnCheckUsername = new Button();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
+            txtVerificationCode = new TextBox();
+            txtEmail = new TextBox();
             txtPasswordConfirm = new TextBox();
             txtPassword = new TextBox();
             txtUsername = new TextBox();
@@ -54,31 +54,42 @@
             lblStep1Title = new Label();
             pnlStep2 = new Panel();
             panel1 = new Panel();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
+            btnNextOrRegister = new Button();
+            btnBack = new Button();
+            btnCancel = new Button();
+            lblStep2Title = new Label();
+            lblNickname = new Label();
+            lblNicknameStatus = new Label();
+            lblProfileImage = new Label();
+            lblImageStatus = new Label();
+            pictureBox1 = new PictureBox();
+            textBox1 = new TextBox();
+            btnCheckNickname = new Button();
+            btnUploadImage = new Button();
             pnlStep1.SuspendLayout();
+            pnlStep2.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pnlStep1
             // 
-            pnlStep1.Controls.Add(linkLabel1);
-            pnlStep1.Controls.Add(checkBox2);
-            pnlStep1.Controls.Add(label5);
+            pnlStep1.Controls.Add(lnkViewTerms);
+            pnlStep1.Controls.Add(chkAgreeToTerms);
+            pnlStep1.Controls.Add(lblPasswordConfirm);
             pnlStep1.Controls.Add(lblPasswordPolicy);
-            pnlStep1.Controls.Add(label10);
-            pnlStep1.Controls.Add(label9);
-            pnlStep1.Controls.Add(label8);
-            pnlStep1.Controls.Add(label7);
-            pnlStep1.Controls.Add(label6);
+            pnlStep1.Controls.Add(lblResendTimer);
+            pnlStep1.Controls.Add(lblVerificationStatus);
+            pnlStep1.Controls.Add(lblVerificationCode);
+            pnlStep1.Controls.Add(lblEmail);
+            pnlStep1.Controls.Add(lblPasswordStatus);
             pnlStep1.Controls.Add(lblPasswordStrength);
             pnlStep1.Controls.Add(chkShowPassword);
-            pnlStep1.Controls.Add(button3);
-            pnlStep1.Controls.Add(button2);
+            pnlStep1.Controls.Add(btnConfirmVerification);
+            pnlStep1.Controls.Add(btnSendVerification);
             pnlStep1.Controls.Add(btnCheckUsername);
-            pnlStep1.Controls.Add(textBox5);
-            pnlStep1.Controls.Add(textBox4);
+            pnlStep1.Controls.Add(txtVerificationCode);
+            pnlStep1.Controls.Add(txtEmail);
             pnlStep1.Controls.Add(txtPasswordConfirm);
             pnlStep1.Controls.Add(txtPassword);
             pnlStep1.Controls.Add(txtUsername);
@@ -91,34 +102,34 @@
             pnlStep1.Size = new Size(434, 530);
             pnlStep1.TabIndex = 0;
             // 
-            // linkLabel1
+            // lnkViewTerms
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(44, 473);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(61, 15);
-            linkLabel1.TabIndex = 7;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "linkLabel1";
+            lnkViewTerms.AutoSize = true;
+            lnkViewTerms.Location = new Point(44, 473);
+            lnkViewTerms.Name = "lnkViewTerms";
+            lnkViewTerms.Size = new Size(59, 15);
+            lnkViewTerms.TabIndex = 7;
+            lnkViewTerms.TabStop = true;
+            lnkViewTerms.Text = "약관 보기";
             // 
-            // checkBox2
+            // chkAgreeToTerms
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(44, 491);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(84, 19);
-            checkBox2.TabIndex = 6;
-            checkBox2.Text = "checkBox2";
-            checkBox2.UseVisualStyleBackColor = true;
+            chkAgreeToTerms.AutoSize = true;
+            chkAgreeToTerms.Location = new Point(44, 491);
+            chkAgreeToTerms.Name = "chkAgreeToTerms";
+            chkAgreeToTerms.Size = new Size(229, 19);
+            chkAgreeToTerms.TabIndex = 6;
+            chkAgreeToTerms.Text = "(필수) 서비스 이용약관에 동의합니다.";
+            chkAgreeToTerms.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // lblPasswordConfirm
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(44, 213);
-            label5.Name = "label5";
-            label5.Size = new Size(39, 15);
-            label5.TabIndex = 5;
-            label5.Text = "label3";
+            lblPasswordConfirm.AutoSize = true;
+            lblPasswordConfirm.Location = new Point(44, 213);
+            lblPasswordConfirm.Name = "lblPasswordConfirm";
+            lblPasswordConfirm.Size = new Size(83, 15);
+            lblPasswordConfirm.TabIndex = 5;
+            lblPasswordConfirm.Text = "비밀번호 확인";
             // 
             // lblPasswordPolicy
             // 
@@ -129,50 +140,50 @@
             lblPasswordPolicy.TabIndex = 5;
             lblPasswordPolicy.Text = "영문, 숫자, 특수문자 포함 6~20자";
             // 
-            // label10
+            // lblResendTimer
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(292, 385);
-            label10.Name = "label10";
-            label10.Size = new Size(39, 15);
-            label10.TabIndex = 5;
-            label10.Text = "label3";
+            lblResendTimer.AutoSize = true;
+            lblResendTimer.Location = new Point(292, 385);
+            lblResendTimer.Name = "lblResendTimer";
+            lblResendTimer.Size = new Size(38, 15);
+            lblResendTimer.TabIndex = 5;
+            lblResendTimer.Text = "03:00";
             // 
-            // label9
+            // lblVerificationStatus
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(44, 414);
-            label9.Name = "label9";
-            label9.Size = new Size(39, 15);
-            label9.TabIndex = 5;
-            label9.Text = "label3";
+            lblVerificationStatus.AutoSize = true;
+            lblVerificationStatus.Location = new Point(44, 414);
+            lblVerificationStatus.Name = "lblVerificationStatus";
+            lblVerificationStatus.Size = new Size(71, 15);
+            lblVerificationStatus.TabIndex = 5;
+            lblVerificationStatus.Text = "상태 메시지";
             // 
-            // label8
+            // lblVerificationCode
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(44, 361);
-            label8.Name = "label8";
-            label8.Size = new Size(39, 15);
-            label8.TabIndex = 5;
-            label8.Text = "label3";
+            lblVerificationCode.AutoSize = true;
+            lblVerificationCode.Location = new Point(44, 361);
+            lblVerificationCode.Name = "lblVerificationCode";
+            lblVerificationCode.Size = new Size(55, 15);
+            lblVerificationCode.TabIndex = 5;
+            lblVerificationCode.Text = "인증번호";
             // 
-            // label7
+            // lblEmail
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(44, 300);
-            label7.Name = "label7";
-            label7.Size = new Size(39, 15);
-            label7.TabIndex = 5;
-            label7.Text = "label3";
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(44, 300);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(43, 15);
+            lblEmail.TabIndex = 5;
+            lblEmail.Text = "이메일";
             // 
-            // label6
+            // lblPasswordStatus
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(44, 261);
-            label6.Name = "label6";
-            label6.Size = new Size(39, 15);
-            label6.TabIndex = 5;
-            label6.Text = "label3";
+            lblPasswordStatus.AutoSize = true;
+            lblPasswordStatus.Location = new Point(44, 261);
+            lblPasswordStatus.Name = "lblPasswordStatus";
+            lblPasswordStatus.Size = new Size(71, 15);
+            lblPasswordStatus.TabIndex = 5;
+            lblPasswordStatus.Text = "상태 메시지";
             // 
             // lblPasswordStrength
             // 
@@ -193,23 +204,23 @@
             chkShowPassword.Text = "비밀번호 보기";
             chkShowPassword.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnConfirmVerification
             // 
-            button3.Location = new Point(186, 379);
-            button3.Name = "button3";
-            button3.Size = new Size(85, 27);
-            button3.TabIndex = 3;
-            button3.Text = "button1";
-            button3.UseVisualStyleBackColor = true;
+            btnConfirmVerification.Location = new Point(186, 379);
+            btnConfirmVerification.Name = "btnConfirmVerification";
+            btnConfirmVerification.Size = new Size(85, 27);
+            btnConfirmVerification.TabIndex = 3;
+            btnConfirmVerification.Text = "인증 확인";
+            btnConfirmVerification.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnSendVerification
             // 
-            button2.Location = new Point(292, 318);
-            button2.Name = "button2";
-            button2.Size = new Size(85, 27);
-            button2.TabIndex = 3;
-            button2.Text = "button1";
-            button2.UseVisualStyleBackColor = true;
+            btnSendVerification.Location = new Point(292, 318);
+            btnSendVerification.Name = "btnSendVerification";
+            btnSendVerification.Size = new Size(85, 27);
+            btnSendVerification.TabIndex = 3;
+            btnSendVerification.Text = "인증번호 발송";
+            btnSendVerification.UseVisualStyleBackColor = true;
             // 
             // btnCheckUsername
             // 
@@ -220,21 +231,21 @@
             btnCheckUsername.Text = "중복확인";
             btnCheckUsername.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // txtVerificationCode
             // 
-            textBox5.Font = new Font("맑은 고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox5.Location = new Point(44, 379);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(115, 27);
-            textBox5.TabIndex = 2;
+            txtVerificationCode.Font = new Font("맑은 고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtVerificationCode.Location = new Point(44, 379);
+            txtVerificationCode.Name = "txtVerificationCode";
+            txtVerificationCode.Size = new Size(115, 27);
+            txtVerificationCode.TabIndex = 2;
             // 
-            // textBox4
+            // txtEmail
             // 
-            textBox4.Font = new Font("맑은 고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox4.Location = new Point(44, 318);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(227, 27);
-            textBox4.TabIndex = 2;
+            txtEmail.Font = new Font("맑은 고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtEmail.Location = new Point(44, 318);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(227, 27);
+            txtEmail.TabIndex = 2;
             // 
             // txtPasswordConfirm
             // 
@@ -301,6 +312,15 @@
             // 
             // pnlStep2
             // 
+            pnlStep2.Controls.Add(btnUploadImage);
+            pnlStep2.Controls.Add(btnCheckNickname);
+            pnlStep2.Controls.Add(textBox1);
+            pnlStep2.Controls.Add(pictureBox1);
+            pnlStep2.Controls.Add(lblImageStatus);
+            pnlStep2.Controls.Add(lblProfileImage);
+            pnlStep2.Controls.Add(lblNicknameStatus);
+            pnlStep2.Controls.Add(lblNickname);
+            pnlStep2.Controls.Add(lblStep2Title);
             pnlStep2.Location = new Point(0, 0);
             pnlStep2.Name = "pnlStep2";
             pnlStep2.Size = new Size(434, 530);
@@ -308,40 +328,119 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(button6);
-            panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
+            panel1.Controls.Add(btnNextOrRegister);
+            panel1.Controls.Add(btnBack);
+            panel1.Controls.Add(btnCancel);
             panel1.Location = new Point(0, 536);
             panel1.Name = "panel1";
             panel1.Size = new Size(434, 116);
             panel1.TabIndex = 2;
             // 
-            // button6
+            // btnNextOrRegister
             // 
-            button6.Location = new Point(332, 23);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 9;
-            button6.Text = "button4";
-            button6.UseVisualStyleBackColor = true;
+            btnNextOrRegister.Location = new Point(332, 23);
+            btnNextOrRegister.Name = "btnNextOrRegister";
+            btnNextOrRegister.Size = new Size(75, 23);
+            btnNextOrRegister.TabIndex = 9;
+            btnNextOrRegister.Text = "button4";
+            btnNextOrRegister.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnBack
             // 
-            button5.Location = new Point(28, 23);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 10;
-            button5.Text = "button4";
-            button5.UseVisualStyleBackColor = true;
+            btnBack.Location = new Point(28, 23);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 10;
+            btnBack.Text = "이전";
+            btnBack.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnCancel
             // 
-            button4.Location = new Point(184, 71);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 11;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(184, 71);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 11;
+            btnCancel.Text = "취소";
+            btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // lblStep2Title
+            // 
+            lblStep2Title.AutoSize = true;
+            lblStep2Title.Location = new Point(186, 9);
+            lblStep2Title.Name = "lblStep2Title";
+            lblStep2Title.Size = new Size(102, 30);
+            lblStep2Title.TabIndex = 0;
+            lblStep2Title.Text = "프로필 설정 (2/2)\n\n";
+            // 
+            // lblNickname
+            // 
+            lblNickname.AutoSize = true;
+            lblNickname.Location = new Point(56, 61);
+            lblNickname.Name = "lblNickname";
+            lblNickname.Size = new Size(43, 15);
+            lblNickname.TabIndex = 0;
+            lblNickname.Text = "닉네임";
+            // 
+            // lblNicknameStatus
+            // 
+            lblNicknameStatus.AutoSize = true;
+            lblNicknameStatus.Location = new Point(56, 111);
+            lblNicknameStatus.Name = "lblNicknameStatus";
+            lblNicknameStatus.Size = new Size(71, 15);
+            lblNicknameStatus.TabIndex = 0;
+            lblNicknameStatus.Text = "상태 메시지";
+            // 
+            // lblProfileImage
+            // 
+            lblProfileImage.AutoSize = true;
+            lblProfileImage.Location = new Point(56, 155);
+            lblProfileImage.Name = "lblProfileImage";
+            lblProfileImage.Size = new Size(83, 15);
+            lblProfileImage.TabIndex = 0;
+            lblProfileImage.Text = "프로필 이미지";
+            // 
+            // lblImageStatus
+            // 
+            lblImageStatus.AutoSize = true;
+            lblImageStatus.Location = new Point(60, 385);
+            lblImageStatus.Name = "lblImageStatus";
+            lblImageStatus.Size = new Size(71, 15);
+            lblImageStatus.TabIndex = 0;
+            lblImageStatus.Text = "상태 메시지";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(56, 173);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(203, 203);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(56, 79);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(203, 29);
+            textBox1.TabIndex = 2;
+            // 
+            // btnCheckNickname
+            // 
+            btnCheckNickname.Location = new Point(277, 79);
+            btnCheckNickname.Name = "btnCheckNickname";
+            btnCheckNickname.Size = new Size(90, 29);
+            btnCheckNickname.TabIndex = 3;
+            btnCheckNickname.Text = "중복확인";
+            btnCheckNickname.UseVisualStyleBackColor = true;
+            // 
+            // btnUploadImage
+            // 
+            btnUploadImage.Location = new Point(276, 173);
+            btnUploadImage.Name = "btnUploadImage";
+            btnUploadImage.Size = new Size(90, 29);
+            btnUploadImage.TabIndex = 3;
+            btnUploadImage.Text = "이미지 찾기...";
+            btnUploadImage.UseVisualStyleBackColor = true;
             // 
             // RegisterForm
             // 
@@ -349,15 +448,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(434, 651);
             Controls.Add(panel1);
-            Controls.Add(pnlStep1);
             Controls.Add(pnlStep2);
+            Controls.Add(pnlStep1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "RegisterForm";
             Text = "RegisterForm";
             pnlStep1.ResumeLayout(false);
             pnlStep1.PerformLayout();
+            pnlStep2.ResumeLayout(false);
+            pnlStep2.PerformLayout();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -365,7 +467,7 @@
 
         private Panel pnlStep1;
         private Panel pnlStep2;
-        private Label label5;
+        private Label lblPasswordConfirm;
         private Label lblPasswordPolicy;
         private Label lblPasswordStrength;
         private CheckBox chkShowPassword;
@@ -375,22 +477,31 @@
         private Label lblPassword;
         private Label lblUsername;
         private Label lblStep1Title;
-        private Label label7;
-        private Label label6;
+        private Label lblEmail;
+        private Label lblPasswordStatus;
         private TextBox txtPasswordConfirm;
-        private Label label10;
-        private Label label9;
-        private Label label8;
-        private Button button3;
-        private Button button2;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private LinkLabel linkLabel1;
-        private CheckBox checkBox2;
+        private Label lblResendTimer;
+        private Label lblVerificationStatus;
+        private Label lblVerificationCode;
+        private Button btnConfirmVerification;
+        private Button btnSendVerification;
+        private TextBox txtVerificationCode;
+        private TextBox txtEmail;
+        private LinkLabel lnkViewTerms;
+        private CheckBox chkAgreeToTerms;
         private Label lblUsernameStatus;
         private Panel panel1;
-        private Button button6;
-        private Button button5;
-        private Button button4;
+        private Button btnNextOrRegister;
+        private Button btnBack;
+        private Button btnCancel;
+        private Button btnUploadImage;
+        private Button btnCheckNickname;
+        private TextBox textBox1;
+        private PictureBox pictureBox1;
+        private Label lblImageStatus;
+        private Label lblProfileImage;
+        private Label lblNicknameStatus;
+        private Label lblNickname;
+        private Label lblStep2Title;
     }
 }
