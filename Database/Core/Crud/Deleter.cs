@@ -6,13 +6,18 @@ using System.Windows.Forms;
 namespace Moble_Yacht_Game.Database.Core.Crud
 {
     /// <summary>
-    /// 데이터베이스의 데이터를 삭제하는(DELETE) 기능만을 담당하는 정적 클래스입니다.
+    /// 데이터베이스의 기존 데이터를 삭제(DELETE)하는 기능만을 담당하는 정적 클래스입니다.
     /// </summary>
     public static class Deleter
     {
         /// <summary>
-        /// DELETE 쿼리를 실행하고, 영향을 받은 행의 수를 반환합니다.
+        /// DELETE 쿼리를 실행하여 데이터를 삭제합니다.
+        /// 내부 로직은 Creator.ExecuteNonQuery와 완전히 동일하지만,
+        /// 역할과 의미를 명확히 구분하기 위해 별도의 클래스로 분리했습니다.
         /// </summary>
+        /// <param name="query">실행할 DELETE 쿼리 문장</param>
+        /// <param name="parameters">SQL 인젝션 공격을 방지하기 위한 파라미터 배열</param>
+        /// <returns>쿼리로 인해 영향을 받은 행(row)의 개수를 반환합니다.</returns>
         public static int ExecuteNonQuery(string query, MySqlParameter[] parameters = null)
         {
             try
@@ -28,8 +33,9 @@ namespace Moble_Yacht_Game.Database.Core.Crud
             catch (Exception ex)
             {
                 MessageBox.Show($"데이터 삭제 중 오류 발생: {ex.Message}");
-                return -1;
+                return 0;
             }
         }
     }
 }
+
