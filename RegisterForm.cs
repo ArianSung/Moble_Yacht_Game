@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Moble_Yacht_Game.UserControls
+namespace Moble_Yacht_Game
 {
-    public partial class RegisterControl : UserControl
+    public partial class RegisterForm : Form
     {
-        public RegisterControl()
+        public RegisterForm()
         {
             InitializeComponent();
         }
