@@ -30,7 +30,7 @@ namespace Moble_Yacht_Game.Database.Core
         // connectionString: 데이터베이스에 연결하기 위한 정보(주소, 아이디, 비밀번호, DB이름 등)를 담는 문자열입니다.
         // 보안을 위해 실제 코드에서는 별도의 설정 파일에 저장하는 것이 좋습니다.
         // TODO: 아래 Server, Uid, Pwd, Database 값을 본인의 Azure MySQL 정보로 반드시 수정해야 합니다.
-        private readonly string connectionString = "Server=서버주소.mysql.database.azure.com;Port=3306;Database=yacht_db;Uid=관리자ID;Pwd=비밀번호;SslMode=Required;";
+        private readonly string connectionString = "Server=moble-yacht-game-db-server.mysql.database.azure.com;Port=3306;Database=yacht_db;Uid=yacht_admin;Pwd=moble1234!;SslMode=Required;";
 
         // 생성자(Constructor): DatabaseManager 객체가 처음 생성될 때 호출되는 부분입니다.
         // private으로 선언하여 외부에서 new DatabaseManager()로 새 객체를 만드는 것을 원천적으로 차단합니다. (싱글톤 유지)
