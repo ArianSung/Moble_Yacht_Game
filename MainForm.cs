@@ -1,7 +1,7 @@
 ﻿// 이 네임스페이스에 있는 클래스들을 '사용'하겠다는 선언입니다.
 using Moble_Yacht_Game.Database.Core;
-using Moble_Yacht_Game.Database.DataModels; // UserData 클래스를 사용하기 위해
-using Moble_Yacht_Game.UserControls;      // LoginControl, RegisterControl을 사용하기 위해
+using Moble_Yacht_Game.Database.DataModels;
+using Moble_Yacht_Game.UserControls;
 using System;
 using System.Windows.Forms;
 
@@ -17,14 +17,14 @@ namespace Moble_Yacht_Game
         // --- 화면(UserControl) 인스턴스 변수 선언 ---
         private LoginControl loginControl;
 
-
         public MainForm()
         {
             // 디자이너에서 만든 UI 요소들을 초기화하는 필수 메서드입니다.
             InitializeComponent();
 
-            // 폼이 처음 화면에 로드될 때 MainForm_Load 메서드를 실행하도록 이벤트를 구독(연결)합니다.
+            // 폼의 Load 이벤트와 FormClosing 이벤트를 각각의 메서드와 연결합니다.
             this.Load += MainForm_Load;
+            this.FormClosing += MainForm_FormClosing;
         }
 
         /// <summary>
@@ -33,28 +33,25 @@ namespace Moble_Yacht_Game
         /// </summary>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // --- 1. 화면(UserControl) 객체 생성 ---
-            loginControl = new LoginControl();
-
-
-            // --- 2. 이벤트 핸들러(처리기) 연결 ---
-
-            loginControl.LoginSuccess += OnLoginSuccess;
-
-            // --- 3. 시작 화면 표시 ---
-            // --- 데이터베이스 연결 시도 ---
-            // 프로그램이 시작되면 가장 먼저 데이터베이스에 연결을 시도합니다.
-            if (DatabaseManager.Instance.Connect())
+            // --- 1. 데이터베이스 연결 시도 ---
+            try
             {
-                // 연결에 성공하면, 첫 화면으로 로그인 컨트롤을 보여줍니다.
-                ShowControl(loginControl);
+                // 프로그램이 시작되면 가장 먼저 데이터베이스에 연결을 시도합니다.
+                DatabaseManager.Instance.Connect();
             }
-            else
+            catch (Exception ex)
             {
-                // 연결에 실패하면, 사용자에게 알리고 프로그램을 종료합니다.
-                MessageBox.Show("데이터베이스에 연결할 수 없어 프로그램을 종료합니다.");
-                Application.Exit();
+                // DatabaseManager에서 연결 실패 시 던진(throw) 예외(Exception)를 여기서 잡습니다.
+                // UI와 관련된 처리는 이처럼 UI 계층에서 책임지는 것이 좋은 구조입니다.
+                MessageBox.Show(ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit(); // 연결에 실패했으므로 프로그램을 종료합니다.
+                return; // 예외 발생 시 더 이상 진행하지 않도록 메서드를 종료합니다.
             }
+
+            // --- 2. 컨트롤 초기화 및 시작 화면 표시 ---
+            // 데이터베이스 연결에 성공한 경우에만 컨트롤들을 초기화하고 화면을 보여줍니다.
+            InitializeControls();
+            ShowControl(loginControl);
         }
 
         /// <summary>
@@ -62,38 +59,37 @@ namespace Moble_Yacht_Game
         /// </summary>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // --- 데이터베이스 연결 해제 ---
             // 프로그램이 종료되기 전에 데이터베이스 연결을 안전하게 닫아줍니다.
-            // 이렇게 해야 서버 자원 낭비를 막을 수 있습니다.
             DatabaseManager.Instance.Disconnect();
         }
 
+        /// <summary>
+        /// 화면(UserControl)들을 생성하고 이벤트를 연결하는 초기화 작업을 담당합니다.
+        /// </summary>
+        private void InitializeControls()
+        {
+            loginControl = new LoginControl();
+            loginControl.LoginSuccess += OnLoginSuccess;
+            // RegisterControl은 별도의 Form으로 분리했으므로, MainForm이 더 이상 알 필요가 없습니다.
+        }
 
         /// <summary>
         /// 지정된 UserControl을 메인 패널에 표시하는 범용 메서드입니다.
-        /// 이 메서드 덕분에 화면 전환 코드가 중복되지 않고 간결해집니다.
         /// </summary>
-        /// <param name="controlToShow">화면에 표시하고 싶은 UserControl의 인스턴스</param>
         private void ShowControl(UserControl controlToShow)
         {
-            // 1. mainPanel에 이전에 표시되었을지도 모르는 컨트롤들을 모두 지웁니다.
             mainPanel.Controls.Clear();
-            // 2. 파라미터로 받은 컨트롤의 Dock 속성을 Fill로 설정하여 mainPanel을 가득 채우도록 합니다.
             controlToShow.Dock = DockStyle.Fill;
-            // 3. mainPanel의 자식 컨트롤로 추가하여 화면에 실제로 보이게 합니다.
             mainPanel.Controls.Add(controlToShow);
         }
 
         /// <summary>
         /// LoginControl에서 로그인 성공 이벤트가 발생했을 때 호출되는 메서드입니다.
         /// </summary>
-        /// <param name="userData">로그인에 성공한 사용자의 정보가 담긴 객체</param>
         private void OnLoginSuccess(UserData userData)
         {
-            // 로그인 성공을 환영하는 메시지 박스를 띄웁니다.
             MessageBox.Show($"{userData.Nickname}님, 환영합니다!");
-
-            // (향후 구현) 이 곳에서 로비 화면으로 전환하는 코드가 실행될 것입니다.
+            // TODO: (향후 구현) 이 곳에서 로비 화면(LobbyControl)으로 전환하는 코드를 작성합니다.
             // 예: ShowControl(lobbyControl);
         }
     }

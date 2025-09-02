@@ -37,11 +37,10 @@ namespace Moble_Yacht_Game.Database.Core.Crud
                 // 명령서를 데이터베이스에 보내 실행하고, 그 결과(영향받은 행의 수)를 반환합니다.
                 return cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"데이터 생성 중 오류 발생: {ex.Message}");
-                // 오류 발생 시 0을 반환하여 실패했음을 알립니다.
-                return 0;
+                // UI 요소를 제거하고, 오류 발생 시 -1을 반환합니다.
+                return -1;
             }
         }
     }

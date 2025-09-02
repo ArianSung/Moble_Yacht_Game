@@ -30,9 +30,9 @@ namespace Moble_Yacht_Game.Database.Core.Crud
                 // ExecuteReader()는 SELECT 쿼리 실행에 사용되며, 결과 데이터를 읽을 수 있는 판독기를 반환합니다.
                 return cmd.ExecuteReader();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"데이터 조회 중 오류 발생: {ex.Message}");
+                // UI 요소를 제거하고, 오류 발생 시 null을 반환합니다.
                 return null;
             }
         }
@@ -58,9 +58,9 @@ namespace Moble_Yacht_Game.Database.Core.Crud
                 // ExecuteScalar()는 단 하나의 값을 빠르고 효율적으로 가져올 때 사용합니다.
                 return cmd.ExecuteScalar();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"데이터 조회 중 오류 발생: {ex.Message}");
+                // UI 요소를 제거하고, 오류 발생 시 null을 반환합니다.
                 return null;
             }
         }
