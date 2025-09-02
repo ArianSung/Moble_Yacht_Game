@@ -51,7 +51,9 @@ namespace Moble_Yacht_Game.UserControls
 
         private void BtnGoToRegister_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            // '회원가입' 버튼이 눌렸음을 MainForm에게 알리기 위해 이벤트를 발생시킵니다.
+            // '?'는 이벤트 구독자가 있을 경우에만 실행하라는 안전장치입니다.
+            RegisterRequested?.Invoke();
         }
 
         private void BtnLogin_Click(object? sender, EventArgs e)
