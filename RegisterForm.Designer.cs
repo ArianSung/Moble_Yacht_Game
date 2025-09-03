@@ -190,9 +190,8 @@
             lblPasswordStrength.AutoSize = true;
             lblPasswordStrength.Location = new Point(44, 185);
             lblPasswordStrength.Name = "lblPasswordStrength";
-            lblPasswordStrength.Size = new Size(31, 15);
+            lblPasswordStrength.Size = new Size(0, 15);
             lblPasswordStrength.TabIndex = 5;
-            lblPasswordStrength.Text = "약함";
             // 
             // chkShowPassword
             // 
@@ -217,7 +216,7 @@
             // 
             btnSendVerification.Location = new Point(292, 318);
             btnSendVerification.Name = "btnSendVerification";
-            btnSendVerification.Size = new Size(85, 27);
+            btnSendVerification.Size = new Size(102, 27);
             btnSendVerification.TabIndex = 7;
             btnSendVerification.Text = "인증번호 발송";
             btnSendVerification.UseVisualStyleBackColor = true;
@@ -226,7 +225,7 @@
             // 
             btnCheckUsername.Location = new Point(292, 79);
             btnCheckUsername.Name = "btnCheckUsername";
-            btnCheckUsername.Size = new Size(85, 27);
+            btnCheckUsername.Size = new Size(102, 27);
             btnCheckUsername.TabIndex = 1;
             btnCheckUsername.Text = "중복확인";
             btnCheckUsername.UseVisualStyleBackColor = true;
@@ -251,7 +250,9 @@
             // 
             txtPasswordConfirm.Font = new Font("맑은 고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtPasswordConfirm.Location = new Point(44, 231);
+            txtPasswordConfirm.MaxLength = 20;
             txtPasswordConfirm.Name = "txtPasswordConfirm";
+            txtPasswordConfirm.PasswordChar = '*';
             txtPasswordConfirm.Size = new Size(227, 27);
             txtPasswordConfirm.TabIndex = 5;
             // 
@@ -259,6 +260,7 @@
             // 
             txtPassword.Font = new Font("맑은 고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtPassword.Location = new Point(44, 155);
+            txtPassword.MaxLength = 20;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(227, 27);
@@ -401,7 +403,7 @@
             lblStep2Title.Font = new Font("맑은 고딕", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblStep2Title.Location = new Point(162, 9);
             lblStep2Title.Name = "lblStep2Title";
-            lblStep2Title.Size = new Size(124, 20);
+            lblStep2Title.Size = new Size(129, 20);
             lblStep2Title.TabIndex = 0;
             lblStep2Title.Text = "프로필 설정 (2/2)";
             // 
