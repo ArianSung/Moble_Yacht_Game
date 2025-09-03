@@ -58,7 +58,7 @@ namespace Moble_Yacht_Game.UserControls
 
         private void BtnLogin_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show("이 기능은 아직 구현되지 않았습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
