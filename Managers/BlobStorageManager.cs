@@ -11,8 +11,10 @@ namespace Moble_Yacht_Game.Managers
     /// </summary>
     public class BlobStorageManager
     {
+        // --- 싱글톤 패턴 구현 ---
         private static BlobStorageManager _instance;
         public static BlobStorageManager Instance => _instance ??= new BlobStorageManager();
+        // --- 싱글톤 패턴 구현 끝 ---
 
         private readonly BlobServiceClient blobServiceClient;
 
@@ -28,6 +30,7 @@ namespace Moble_Yacht_Game.Managers
             IConfigurationRoot configuration = builder.Build();
             string connectionString = configuration.GetConnectionString("AzureBlobStorage");
 
+            // 연결 문자열이 없는 경우를 대비한 예외 처리
             if (string.IsNullOrEmpty(connectionString))
             {
                 throw new InvalidOperationException("appsettings.json 파일에서 AzureBlobStorage 연결 문자열을 찾을 수 없습니다.");
@@ -49,6 +52,7 @@ namespace Moble_Yacht_Game.Managers
                 BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("profiles");
 
                 // 파일 확장자를 유지하면서, 전 세계에서 유일한 파일 이름을 생성합니다. (예: guid.png)
+                // 이렇게 해야 다른 사용자가 같은 이름의 파일을 올려도 덮어쓰지 않습니다.
                 string uniqueBlobName = $"{Guid.NewGuid()}{Path.GetExtension(localFilePath)}";
 
                 // 컨테이너 내에서 참조할 Blob(파일) 클라이언트를 가져옵니다.
@@ -62,7 +66,7 @@ namespace Moble_Yacht_Game.Managers
             }
             catch (Exception)
             {
-                // 업로드 중 오류가 발생하면 null을 반환합니다.
+                // 업로드 중 오류가 발생하면 null을 반환하여 실패를 알립니다.
                 return null;
             }
         }

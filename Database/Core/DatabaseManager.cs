@@ -11,8 +11,10 @@ namespace Moble_Yacht_Game.Database.Core
     /// </summary>
     public class DatabaseManager
     {
+        // --- 싱글톤 패턴 구현 ---
         private static DatabaseManager _instance;
         public static DatabaseManager Instance => _instance ??= new DatabaseManager();
+        // --- 싱글톤 패턴 구현 끝 ---
 
         private MySqlConnection conn;
         private readonly string connectionString;

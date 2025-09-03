@@ -36,6 +36,8 @@ namespace Moble_Yacht_Game.UserControls
             btnGoToRegister.Click += BtnGoToRegister_Click;
         }
 
+        #region --- 이벤트 핸들러 ---
+
         /// <summary>
         /// 컨트롤이 처음 로드될 때 컨트롤 위치를 조정합니다.
         /// </summary>
@@ -89,6 +91,10 @@ namespace Moble_Yacht_Game.UserControls
             }
         }
 
+        #endregion
+
+        #region --- private 메서드 ---
+
         /// <summary>
         /// UIHelper를 사용하여 컨트롤들의 위치를 조정합니다.
         /// </summary>
@@ -98,6 +104,8 @@ namespace Moble_Yacht_Game.UserControls
             picGameLogo.Top = (this.ClientSize.Height / 2) - (picGameLogo.Height / 2) - 100;
             UIHelper.AlignToBottomRight(this, pnlLogin, 50, 50);
         }
+
+        #endregion
     }
 }
 
