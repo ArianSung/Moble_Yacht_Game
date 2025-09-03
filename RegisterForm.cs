@@ -30,6 +30,9 @@ namespace Moble_Yacht_Game
         private bool isNicknameChecked = false;
         private bool isEmailVerified = false; // 현재는 임시 구현
         private string profileImagePath = null;
+        private string verificationCode; // 이메일 인증 코드를 저장할 변수
+        private System.Windows.Forms.Timer resendTimer;       // 인증번호 재전송 타이머
+        private int timerSeconds = 180;  // 타이머 시간 (3분)
 
         #endregion
 
@@ -68,6 +71,9 @@ namespace Moble_Yacht_Game
             btnBack.Click += BtnBack_Click;
             btnCancel.Click += BtnCancel_Click;
             btnNextOrRegister.Click += BtnNextOrRegister_Click;
+
+            // 타이머 초기화
+            InitializeTimer();
         }
 
         /// <summary>
@@ -79,6 +85,27 @@ namespace Moble_Yacht_Game
         }
 
         #region ===== Panel Register (1단계) =====
+
+        private void InitializeTimer()
+        {
+            resendTimer = new System.Windows.Forms.Timer();
+            resendTimer.Interval = 1000; // 1초마다 Tick 이벤트 발생
+            resendTimer.Tick += ResendTimer_Tick;
+        }
+
+        private void ResendTimer_Tick(object? sender, EventArgs e)
+        {
+            timerSeconds--;
+            lblResendTimer.Text = TimeSpan.FromSeconds(timerSeconds).ToString(@"mm\:ss");
+
+            if (timerSeconds <= 0)
+            {
+                resendTimer.Stop();
+                btnSendVerification.Enabled = true;
+                lblResendTimer.Text = "시간 만료";
+                verificationCode = null; // 시간 만료 시 인증 코드 무효화
+            }
+        }
 
         private void TxtUsername_TextChanged(object? sender, EventArgs e)
         {
@@ -144,15 +171,71 @@ namespace Moble_Yacht_Game
             else { lblPasswordStatus.Text = "비밀번호가 일치하지 않습니다."; lblPasswordStatus.ForeColor = Color.Red; }
         }
 
-        private void BtnSendVerification_Click(object? sender, EventArgs e)
+        private async void BtnSendVerification_Click(object? sender, EventArgs e)
         {
-            MessageBox.Show("이 기능은 아직 구현되지 않았습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string email = txtEmail.Text.Trim();
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("올바른 이메일 주소를 입력해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Random rand = new Random();
+            verificationCode = rand.Next(100000, 999999).ToString();
+
+            string subject = "[모바일 요트 게임] 회원가입 인증번호 안내";
+            string body = $"<html><body><h2>인증번호: {verificationCode}</h2><p>인증번호를 입력란에 기입해주세요.</p></body></html>";
+
+            btnSendVerification.Enabled = false;
+            lblVerificationStatus.Text = "인증번호를 발송하고 있습니다...";
+            lblVerificationStatus.ForeColor = Color.Black;
+
+            bool success = await EmailManager.Instance.SendEmailAsync(email, subject, body);
+
+            if (success)
+            {
+                lblVerificationStatus.Text = "인증번호가 발송되었습니다. 이메일을 확인해주세요.";
+                lblVerificationStatus.ForeColor = Color.Green;
+
+                timerSeconds = 180;
+                lblResendTimer.Text = "03:00";
+                resendTimer.Start();
+            }
+            else
+            {
+                MessageBox.Show("인증번호 발송에 실패했습니다. 이메일 주소를 확인하거나 잠시 후 다시 시도해주세요.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblVerificationStatus.Text = "인증번호 발송 실패";
+                lblVerificationStatus.ForeColor = Color.Red;
+                btnSendVerification.Enabled = true;
+            }
         }
 
         private void BtnConfirmVerification_Click(object? sender, EventArgs e)
         {
-            MessageBox.Show("이 기능은 아직 구현되지 않았습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            isEmailVerified = true;
+            if (string.IsNullOrEmpty(verificationCode))
+            {
+                MessageBox.Show("먼저 인증번호를 발송해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (txtVerificationCode.Text == verificationCode)
+            {
+                resendTimer.Stop();
+                lblVerificationStatus.Text = "이메일 인증이 완료되었습니다.";
+                lblVerificationStatus.ForeColor = Color.Green;
+                isEmailVerified = true;
+
+                txtEmail.Enabled = false;
+                txtVerificationCode.Enabled = false;
+                btnSendVerification.Enabled = false;
+                btnConfirmVerification.Enabled = false;
+            }
+            else
+            {
+                lblVerificationStatus.Text = "인증번호가 일치하지 않습니다.";
+                lblVerificationStatus.ForeColor = Color.Red;
+                isEmailVerified = false;
+            }
         }
 
         #endregion
