@@ -20,7 +20,8 @@
 
         // DB의 losses 컬럼에 해당하는 값
         public int Losses { get; set; }
-
+        // 프로필 이미지 URL 속성 추가
+        public string ProfileImageUrl { get; set; } 
         // 여기에 나중에 필요한 유저 데이터(예: 보유 재화, 레벨 등)를 계속 추가할 수 있습니다.
     }
 }

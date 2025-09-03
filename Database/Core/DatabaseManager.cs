@@ -7,7 +7,7 @@ namespace Moble_Yacht_Game.Database.Core
 {
     /// <summary>
     /// 데이터베이스 연결을 관리하는 클래스입니다.
-    /// 프로그램 전체에서 단 하나의 연결 객체만 존재하도록 '싱글톤(Singleton)' 패턴으로 설계되었습니다.
+    /// appsettings.json에서 연결 정보를 안전하게 읽어오며, 오류 발생 시 UI와 독립적으로 예외를 발생시킵니다.
     /// </summary>
     public class DatabaseManager
     {
@@ -47,7 +47,7 @@ namespace Moble_Yacht_Game.Database.Core
             }
             catch (Exception ex)
             {
-                // UI 계층에서 오류를 처리할 수 있도록 예외를 다시 던집니다.
+                // UI 계층에서 오류를 처리할 수 있도록 예외를 다시 던집니다. (역할 분리)
                 throw new Exception($"데이터베이스 연결에 실패했습니다. (원본 오류: {ex.Message})");
             }
         }
